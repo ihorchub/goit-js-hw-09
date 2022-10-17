@@ -2,6 +2,7 @@ import { Ukrainian } from 'flatpickr/dist/l10n/uk.js';
 import 'flatpickr/dist/themes/light.css';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const refs = {
   startButton: document.querySelector('[data-start]'),
@@ -12,7 +13,6 @@ const refs = {
   seconds: document.querySelector('[data-seconds]'),
 };
 
-// const date = new Date();
 const date = new Date();
 const choiceDatesByFormat = {};
 let choiceDatesByMiliseconds = null;
@@ -27,8 +27,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] <= date) {
-      refs.startButton.disabled = true;
-      alert('Please choose a date in the future');
+      Notify.failure('Please choose a date in the future');
     } else {
       refs.startButton.disabled = false;
       return (choiceDatesByMiliseconds = selectedDates[0] - date);
