@@ -32,10 +32,10 @@ function handleSubmit(event) {
   ) {
     createPromise(i, j)
       .then(result => {
-        console.log(result);
+        return result;
       })
       .catch(error => {
-        console.log(error);
+        return error;
       });
   }
 }
